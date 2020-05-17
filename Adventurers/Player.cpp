@@ -1,11 +1,8 @@
 #include "Player.h"
 
-Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime) :
-	animation(texture, imageCount, switchTime)
+Player::Player(sf::Vector2f size, sf::Vector2u(indexImage), float speed) : GameObject(size, indexImage, speed, "../Assets/Graphics/squall.png"),
+	animation(&texture, indexImage, speed)
 {
-	meshRenderer.setSize(sf::Vector2f(64.0f, 64.0f));
-	meshRenderer.setTexture(texture);
-	meshRenderer.setOrigin(meshRenderer.getSize() / 2.0f);
 }
 
 Player::~Player()

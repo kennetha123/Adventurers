@@ -1,20 +1,19 @@
 #pragma once
-#include "Animation.h"
-#include <SFML/Graphics.hpp>
 #include"Collision.h"
-class Player
+#include "GameObject.h"
+class Player : public GameObject
 {
 public:
-	Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime);
+	Player(sf::Vector2f size, sf::Vector2u(indexImage), float speed);
 	~Player();
 
 	void Update(float deltaTime);
-	void Draw(sf::RenderWindow& window);
+	void Draw(sf::RenderWindow& window) override;
 
-	sf::Vector2f GetPosition() { return meshRenderer.getPosition(); }
-	Collision GetCollision() { return Collision(meshRenderer); }
+	sf::Vector2f GetPosition() override { return GameObject::meshRenderer.getPosition(); }
+	Collision GetCollision() { return Collision(GameObject::meshRenderer); }
+	sf::Vector2u indexImage;
 private:
-	sf::RectangleShape meshRenderer;
 	Animation animation;
 };
 

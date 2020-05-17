@@ -25,6 +25,10 @@ private:
 	sf::View view;
 	float deltaTime = 0.0f;
 	void DrawObject(const sf::RectangleShape renderTarget);
-	sf::Texture texture;
+	//sf::Texture playerTexture;
+	sf::Texture treeTexture;
+	//Player player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime);
+	//Sprite gameObject(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position);
+	//Sprite gameObject1(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position);
 };
 

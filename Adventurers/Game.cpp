@@ -1,7 +1,7 @@
 #include "Game.h"
 
-Game::Game() : 
-	window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Adventurers!", sf::Style::Close | sf::Style::Resize), 
+Game::Game() :
+	window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Adventurers!", sf::Style::Close | sf::Style::Resize),
 	view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(SCREEN_WIDTH, SCREEN_HEIGHT))
 {
 	Start();
@@ -10,6 +10,12 @@ Game::Game() :
 Game::~Game()
 {
 
+}
+
+void Game::Run()
+{
+	Start();
+	Update();
 }
 
 void Game::ResizeView(const sf::RenderWindow& window, sf::View& view)
@@ -21,8 +27,7 @@ void Game::ResizeView(const sf::RenderWindow& window, sf::View& view)
 
 void Game::Start()
 {
-	texture.loadFromFile("../Assets/Graphics/squall.png");
-	//Initialize Player
+
 }
 
 void Game::ProcessEvents()
@@ -44,17 +49,16 @@ void Game::ProcessEvents()
 
 void Game::Update()
 {
-	Player player(&texture, sf::Vector2u(3, 4), 0.2f);
-
-	Sprite gameObject(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f));
-	Sprite gameObject1(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f));
+	Player player(sf::Vector2f(64.0f,64.0f), sf::Vector2u(3, 4), 0.2f);
+	Sprite gameObject(sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 200.0f));
+	Sprite gameObject1(sf::Vector2f(400.0f, 200.0f), sf::Vector2f(500.0f, 0.0f));
 
 	while (window.isOpen())
 	{
 		deltaTime = clock.restart().asSeconds();
 
 		ProcessEvents();
-
+		
 		player.Update(deltaTime);
 		gameObject.GetCollision().CheckCollision(player.GetCollision(), 1.0f);
 		gameObject.GetCollision().CheckCollision(gameObject1.GetCollision(), 1.0f);
